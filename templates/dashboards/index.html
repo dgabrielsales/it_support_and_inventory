@@ -1,0 +1,52 @@
+{%extends 'base.html'%}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<body><br>
+
+<div class="container card card-body border-secondary  bg-dark text-white">
+
+
+<div id="piechart"></div>
+
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+
+function drawChart() {
+  
+  var data = google.visualization.arrayToDataTable([
+  ['Tags', 'Quantidade'],
+  ['Work', 8],
+  ['Eat', 2],
+
+]);
+
+  var options = {'title':'Problemas Por Tag', 'width':550, 'height':400};
+
+
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+} 
+
+
+
+
+</script>
+<!--<p><a href="{{ url_for('index') }} ">Voltar para a página inicial</a></p>-->
+
+
+
+
+
+
+{%endblock%}
+</body>
+</html>

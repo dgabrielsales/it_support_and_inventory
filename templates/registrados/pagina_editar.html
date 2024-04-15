@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<form method="POST">
+
+  <div class="card  container card-body bg-dark text-white ">
+    <div class="mb-3   " >
+      <label for="escritor" class="form-label">Título:</label>
+      <input type="text" class="form-control  text-white bg-dark" id="titulo" name="titulo" placeholder="nome" value="{{ problema.titulo}}">
+    </div>
+
+    <div class="mb-3   " >
+      <label for="escritor" class="form-label">Descrição:</label>
+      <input type="text" class="form-control  text-white bg-dark" id="descricao" name="descricao" placeholder="nome" value="{{ problema.descricao}}">
+    </div>
+
+    <div class="mb-3   " >
+      <label for="escritor" class="form-label">Escritor:</label>
+      <input type="text" class="form-control  text-white bg-dark" id="escritor" name="escritor" placeholder="nome" value="{{ problema.escritor}}">
+    </div>
+
+    
+    <select class="form-select bg-dark text-white"  aria-label="Default select example" name="tag">
+      <option selected name="tag">Selecione uma Tag:</option>
+      {% for tag in tags_existentes %}
+      <option selected>{{tag.nome_tag}}</option>
+      {%endfor%}
+    </select>
+ 
+    
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Solução:</label>
+      <textarea class="form-control bg-dark text-white" id="solucao" name="solucao" rows="3">{{ problema.solucao.descricao_solucao }}</textarea>
+    </div>
+
+    <input type="submit" value="Atualizar" class="btn btn-primary">
+</div>
+</form> 
+{% endblock %}

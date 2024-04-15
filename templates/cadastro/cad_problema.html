@@ -1,0 +1,52 @@
+{%extends 'base.html'%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Problemas e Soluções</title>
+</head>
+<body>
+    <h3>Cadastrar Problema :</h3>
+    <form action="/envio_problema" method="POST">
+        <div class="card card-body container bg-dark text-white border-secondary "> 
+        <div class="mb-3">  
+            <label for="exampleFormControlInput1" class="form-label" >Título do Problema</label>
+            <input type="text" class="form-control bg-dark text-white" id="titulo" required name="titulo" placeholder="Título" autocomplete="off" maxlength="60">
+          </div>
+          
+    
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label" >Breve Descrição</label>
+            <input type="text" class="form-control bg-dark text-white" id="escritor" required name="descricao"placeholder="Breve Descrição" autocomplete="off" >
+          </div>
+            
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label" >Autor</label>
+            <input type="text" class="form-control bg-dark text-white" id="descricao" name="escritor"  required placeholder="Autor" autocomplete="off" maxlength="15">
+          </div>
+
+          <label for="exampleFormControlInput1" class="form-label" >Categoria (Tag)</label>
+            <select class="form-select bg-dark text-white" aria-label="Default select example" name="tag">
+              <option selected>Tags</option>
+              {% for tag in consulta_db %}
+              <option selected>{{tag.nome_tag}}</option>
+              {%endfor%}
+            </select>
+          
+
+          <br><br>
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+          </div>
+ 
+            
+
+    </form>
+
+
+
+    
+</html>
+{%endblock%}

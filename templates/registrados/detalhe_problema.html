@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+
+{%block content%}
+<br>
+<div class="card  container card-body bg-dark text-white ">
+        <label for="nome">Título:   {{ problema.titulo }}</label><br>
+      
+        <br> 
+        <label for="descricao">Descrição: {{ problema.descricao }}</label><br>
+
+        <br>
+        <label for="escritor">Escritor:   {{ problema.escritor }}</label>
+
+        <br>
+        <label for="tags">Tags: {% for tag in problema.tags %}{{ tag.nome_tag }}{% if not loop.last %}, {% endif %}{% endfor %}</label><br>
+        
+        <br>
+        <br>
+        <label for="solucao">Solução: </li>{{ problema.solucao.descricao_solucao}}</li></label><br>
+        <br>
+
+        <a href="{{ url_for('atualizar_ticket', id=problema.id) }}" class="btn btn-primary">Atualizar Ticket</a>
+
+</div>
+
+{%endblock%}

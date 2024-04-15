@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+
+
+{%block content%} 
+<br>
+<form action='/criar_tag' method="post">
+<div class="container card  bg-dark text-white border-secondary ">
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label " >Crie tags</label>
+    <input type="text" class="form-control bg-dark text-white" id="tag" required name="tag" placeholder="" autocomplete="off">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Criar</button>  
+  <form>
+<br>
+
+<p>Tags Existentes</p>
+<select class="form-select bg-dark text-white" aria-label="Default select example">
+    <option selected>Selecione uma Tag:</option>
+    {% for tag in nome_tag %}
+    <option selected>{{tag.nome_tag}}</option>
+    {%endfor%}
+  </select>
+  <br>
+</div>
+<br>
+
+
+
+  {%endblock%}

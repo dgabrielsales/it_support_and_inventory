@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/card.css') }}">
+
+
+{% extends 'base.html' %}
+
+{% block title %}
+    Cadastro de Problemas e Soluções
+{% endblock %}
+
+{% block content %}
+<br>  
+<h3>Problemas Registrados:</h3>
+<br>
+Filtrar :
+<br><br>   
+        <form action="" method="GET">
+            <main class="row">
+        
+                {% for registro in problemas %}
+                <div class="col-md-4">  
+                <div class="card border-secondary  bg-dark">
+                    <div class="card-header">
+                        <h5 class="card-title">{{ registro.titulo }}</h5>
+                    </div>
+                    <div class="card-body" >
+                        <p class="card-text">{{ registro.descricao }}</p>
+                     
+                        <a href="detalhe_sobre/{{ ids_problemas[loop.index0]}}" class="btn btn-primary">Detalhes</a><br>           
+            
+                        <p class="card-tags">Tag:
+                            {% for tag in registro.tags %}
+                                {{ tag.nome_tag }}
+                                {% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                        <p class="escritor">Por&#8594;: {{ registro.escritor }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+  
+</main>
+
+    </form>
+<br>
+
+
+
+
+
+{% endblock %}

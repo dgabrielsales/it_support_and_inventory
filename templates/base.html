@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/base.css')}}">
+
+</head>
+<body>
+    <!--bg-primary - bg-light--> 
+    <nav class="navbar navbar-expand-lg  text-white bg-dark">
+        <div class="container-fluid">
+        <a class="navbar-brand text-white" href="/">Tutopia</a>
+        <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse color-drop " id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active text-white" aria-current="page">Home</a>
+            </li>
+
+
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle active   text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Menu
+                </a>
+                <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item text-white hover-drop" href="/problemas_cadastrados">Problemas Cadastrados</a></li>
+                <li><a class="dropdown-item text-white hover-drop" href="/cadastrar_problema">Cadastrar Problema</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-white hover-drop" href="/dashboard">Dashboard</a></li>
+                <li><a class="dropdown-item text-white hover-drop" href="/criar_tag">Criar Tag</a></li>
+                </ul>
+            </li>
+        
+            </ul>
+        <!-- <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>-->
+            </form>
+        </div>
+        </div>
+    </nav>
+
+
+    <div class="container-fluid">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<nav class="navbar  color-base bg-dark fixed-bottom ">
+        <div class="container-fluid ">
+        <a class="navbar-brand text-white" >&copy2024 D.G para o Suporte F.H&#9829</a>
+        </div>
+         <!-- <div class="mt-5 p-4 bg-dark text-white text-center ">
+            <p>&copy2024 D.G para o Suporte F.H</p>
+          </div>--> 
+    </nav>
+</body>
+</html>
