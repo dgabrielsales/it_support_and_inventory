@@ -17,7 +17,9 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
+## Em Desenvolvimento
 
+Este projeto ainda está em desenvolvimento e algumas funcionalidades podem estar incompletas ou não implementadas. Estamos trabalhando arduamente para concluir o projeto o mais rápido possível.
 
 
 
