@@ -1,4 +1,6 @@
 from app import db
+from datetime import datetime, timezone
+import pytz
 
 problema_tag_association = db.Table(
     'problema_tag_association',
@@ -13,8 +15,9 @@ class Problema(db.Model):
     escritor = db.Column(db.String(20))
     tags = db.relationship('Tag', secondary=problema_tag_association, backref='problemas')
     solucao = db.relationship('Solucao', backref='problema', uselist=False)
+    data_hora = db.Column(db.DateTime(timezone=True), default=lambda: datetime.now(pytz.timezone('America/Manaus')))
 
-class Tag(db.Model):
+class Tag(db.Model):    
     id = db.Column(db.Integer, primary_key=True)
     nome_tag = db.Column(db.String(50))
 

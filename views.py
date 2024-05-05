@@ -93,12 +93,12 @@ def atualizar_ticket(id):
         problema.titulo = request.form['titulo']
         problema.descricao = request.form['descricao']
         problema.escritor = request.form['escritor']
-        
+
         if not problema.solucao:
             problema.solucao = Solucao(descricao_solucao=request.form['solucao'])
         else:
             problema.solucao.descricao_solucao = request.form['solucao']
-    
+
 
         db.session.commit()
         return "Atualizado com sucesso"

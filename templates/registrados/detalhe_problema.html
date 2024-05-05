@@ -19,7 +19,8 @@
         <br>
         <label for="solucao">Solução: </li>{{ problema.solucao.descricao_solucao}}</li></label><br>
         <br>
-
+          
+        <p>Data Criação : {{problema.data_hora}}<p>
         <a href="{{ url_for('atualizar_ticket', id=problema.id) }}" class="btn btn-primary">Atualizar Ticket</a>
 
 </div>
