@@ -11,6 +11,17 @@
     <h3>Cadastrar Problema :</h3>
     <form action="/envio_problema" method="POST">
         <div class="card card-body container bg-dark text-white border-secondary "> 
+          <br>
+          {%with messages = get_flashed_messages(with_categories=true)%}
+            {%if messages%}
+              {%for category, message in messages%}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                  {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+              {%endfor%}
+            {%endif%}
+          {%endwith%}
         <div class="mb-3">  
             <label for="exampleFormControlInput1" class="form-label" >Título do Problema</label>
             <input type="text" class="form-control bg-dark text-white" id="titulo" required name="titulo" placeholder="Título" autocomplete="off" maxlength="60">

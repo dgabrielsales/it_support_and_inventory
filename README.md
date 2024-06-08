@@ -21,5 +21,7 @@ python app.py
 
 Este projeto ainda está em desenvolvimento e algumas funcionalidades podem estar incompletas ou não implementadas. Estamos trabalhando arduamente para concluir o projeto o mais rápido possível.
 
+## Atualizações
+- **8 de junho de 2024:** Mudança em como os erros e sucesso são retornados usando o flash Message.
 
 

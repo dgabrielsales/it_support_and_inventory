@@ -1,5 +1,6 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash, session 
 from app import app, db
+from sqlalchemy.exc import SQLAlchemyError
 from models import Problema, Solucao, Tag
 
 
@@ -28,12 +29,16 @@ def problemas():
     
         if tag_existente:
             novo_problema.tags.append(tag_existente)
-            
-        db.session.add(novo_problema)
-        db.session.commit()
-        #return "sucesso"
-        return redirect(url_for('index'))
 
+        try:    
+           db.session.add(novo_problema)
+           db.session.commit() 
+           flash('Cadastrado com sucesso :)', category='success')
+        except SQLAlchemyError as e:
+            db.session.rollback()
+            flash('Erro no cadastro (: ):{str(e)}', category='error')
+
+        return redirect(url_for('inicio_cadastro'))
 
 
 @app.route('/problemas_cadastrados', methods=['GET'])
@@ -47,7 +52,15 @@ def problemas_cadastrados():
 
 @app.route('/dashboard')
 def dash(): 
-    return render_template('dashboards/index.html')
+    all_tags = Tag.query.all()
+    ocorrencia = {}
+    for item in all_tags:
+        if item in ocorrencia:
+            ocorrencia[item] += 1
+        else:
+            ocorrencia[item] = 1
+    print(ocorrencia)
+    return render_template('dashboards/index.html', ocorrencia=ocorrencia)
 
 
 @app.route('/criar_tag', methods=['POST', 'GET'])
@@ -60,13 +73,11 @@ def criar_tag():
             nova_tag = Tag(nome_tag=nome_tag)
             db.session.add(nova_tag)
             db.session.commit()
-            return render_template('notificacao/sucess.html')
-            return "Tag Criada com sucesso! :)"
-        
+            flash('Tag criada com suceso', category='success')
+            return redirect(url_for('criar_tag'))
         else:
-            return render_template('notificacao/error.html')
-            return "Tag existente, Você não pode duplicar tag ! :("
-    
+            flash('Tag existente, você não pode duplicar tag!', category='danger')
+            return redirect(url_for('criar_tag'))
     nome_tag = Tag.query.all()
     
     return render_template('dashboards/criar_tag.html', nome_tag=nome_tag)
@@ -99,7 +110,12 @@ def atualizar_ticket(id):
         else:
             problema.solucao.descricao_solucao = request.form['solucao']
 
+        try:
+           db.session.commit()
+           flash(f'Ticket {id} atualizado com sucesso :)', category='success')
 
-        db.session.commit()
-        return "Atualizado com sucesso"
+        except SQLAlchemyError as e:
+            db.session.rollback()
+            flash('Erro ao atualizar', category='danger')
+        
     return render_template('registrados/pagina_editar.html', problema=problema, problema_id=id,  tags_existentes=tags_existentes)

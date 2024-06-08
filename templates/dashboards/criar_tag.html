@@ -4,7 +4,21 @@
 {%block content%} 
 <br>
 <form action='/criar_tag' method="post">
+
 <div class="container card  bg-dark text-white border-secondary ">
+  <!-- Flash messages att retirar sucess e error-->
+   <br>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+  {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
 <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label " >Crie tags</label>
     <input type="text" class="form-control bg-dark text-white" id="tag" required name="tag" placeholder="" autocomplete="off">

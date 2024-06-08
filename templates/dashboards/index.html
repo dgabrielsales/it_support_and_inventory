@@ -43,7 +43,9 @@ function drawChart() {
 <!--<p><a href="{{ url_for('index') }} ">Voltar para a página inicial</a></p>-->
 
 
-
+{% for tag in ocorrencias %}
+<option selected>{{tag}}</option>
+{%endfor%}
 
 
 
