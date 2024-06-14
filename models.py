@@ -14,8 +14,8 @@ class Problema(db.Model):
     descricao = db.Column(db.String(200), nullable=False)
     escritor = db.Column(db.String(20))
     tags = db.relationship('Tag', secondary=problema_tag_association, backref='problemas')
-    solucao = db.relationship('Solucao', backref='problema', uselist=False)
-    data_hora = db.Column(db.DateTime(timezone=True), default=lambda: datetime.now(pytz.timezone('America/Manaus')))
+    solucao = db.relationship('Solucao', backref='problema', uselist=False, cascade="all, delete")
+    data_hora = db.Column(db.DateTime(timezone=True), default=lambda: datetime.now(pytz.timezone('America/Sao_Paulo')))
 
 class Tag(db.Model):    
     id = db.Column(db.Integer, primary_key=True)

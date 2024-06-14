@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash, session 
+from flask import render_template, request, redirect, url_for, flash, session , jsonify
 from app import app, db
 from sqlalchemy.exc import SQLAlchemyError
 from models import Problema, Solucao, Tag
@@ -51,16 +51,21 @@ def problemas_cadastrados():
 
 
 @app.route('/dashboard')
-def dash(): 
-    all_tags = Tag.query.all()
-    ocorrencia = {}
-    for item in all_tags:
-        if item in ocorrencia:
-            ocorrencia[item] += 1
-        else:
-            ocorrencia[item] = 1
-    print(ocorrencia)
-    return render_template('dashboards/index.html', ocorrencia=ocorrencia)
+def dash():
+    problemas = Problema.query.all()
+    contagem_tags = {}
+    for problema in problemas:
+        for tag in problema.tags:
+            if tag.nome_tag in contagem_tags:
+                contagem_tags[tag.nome_tag] += 1
+            else:
+                contagem_tags[tag.nome_tag] = 1
+    
+    dados_grafico = [['Tags', 'Quantidade']]
+    for tag, qtd in contagem_tags.items():
+        dados_grafico.append([tag, qtd])
+    return render_template('dashboards/index.html', dados_grafico=dados_grafico)
+    
 
 
 @app.route('/criar_tag', methods=['POST', 'GET'])
@@ -92,9 +97,8 @@ def recuperar_pro(problema_id):
         print(problema.titulo)
         solucao = problema.solucao
         return render_template('registrados/detalhe_problema.html', problema=problema, solucao=solucao )
-    else:
-        return render_template('404/not_found.html')
-
+    else: 
+        return redirect(url_for('index'))
 
 @app.route('/atualizar/<int:id>', methods=['GET', 'POST'])
 def atualizar_ticket(id):  
