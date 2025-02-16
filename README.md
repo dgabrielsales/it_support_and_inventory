@@ -29,3 +29,7 @@ Este Projeto é apenas para fins de treinar
 - **8 de junho de 2024:** Mudança em como os erros e sucessos são retornados usando o flash Message.
 - **14 de junho de 2024:** Dashboard Funcionando corretamente.
 
+# Modelo do Banco de Dados 🗃️
+Diagrama do banco de dados para o projeto de inventário.
+
+![Diagrama do Banco de Dados](Diagrama.pdf)
