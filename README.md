@@ -32,4 +32,4 @@ Este Projeto é apenas para fins de treinar
 # Modelo do Banco de Dados 🗃️
 Diagrama do banco de dados para o projeto de inventário.
 
-![Diagrama do Banco de Dados](Diagrama.pdf)
+![Diagrama do Banco de Dados](diagrama_invetario.pdf)
