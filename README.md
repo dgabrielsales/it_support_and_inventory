@@ -31,9 +31,6 @@ Ele permite **registrar equipamentos**, **alocar ativos a setores** e acompanhar
 
 ---
 
-## 📖 **Base de Conhecimento**
-A **base de conhecimento** é integrada ao projeto para facilitar a compreensão e a manutenção do sistema.  
-
 ### 📌 **1. O que é o inventário?**
 - O sistema gerencia **ativos de TI**, como **computadores, impressoras e servidores**.  
 - Cada equipamento pode ser **alocado a um setor** e **realocar-se quando necessário**.  
@@ -49,27 +46,26 @@ O banco de dados usa **SQLite**.
 | `alocacoes` | Histórico de movimentações dos equipamentos |
 
 ---
-
-## 🛠 **Como Executar o Projeto**
-### 1️⃣ **Clone o Repositório**
 ```bash
+## 🛠 **Como Executar o Projeto**
+### 1️⃣ Clone o Repositório
 git clone https://github.com/dgabrielsales/it_support_and_inventory.git
 cd it_support_and_inventory ```
 ```
 
 ```bash
-##2️⃣ **Crie um Ambiente Virtual**
+### 2️⃣ Crie um Ambiente Virtual
 python -m venv venv
 source venv/bin/activate  # Linux/macOS
 venv\Scripts\activate  # Windows
 ```
 
 ```bash
-##3️⃣ Instale as Dependências
+###3️⃣ Instale as Dependências
 pip install -r requirements.txt
 ```
 
 ```bash
-5️⃣ Inicie o Servidor
+###5️⃣ Inicie o Servidor
 python app.py
 ```
