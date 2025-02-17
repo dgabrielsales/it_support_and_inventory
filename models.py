@@ -25,3 +25,23 @@ class Solucao(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     descricao_solucao = db.Column(db.String(200), nullable=False)
     problema_id = db.Column(db.Integer, db.ForeignKey('problema.id'), unique=True, nullable=False)
+
+class Equipamento(db.Model):
+    id_equipamento = db.Column(db.Integer, primary_key=True)
+    nome_produto = db.Column(db.String(70))
+    data_compra = db.Column(db.Date())
+    numero_serie = db.Column(db.String(20))
+    marca = db.Column(db.String(20))
+
+class Alocacao(db.Model):
+    id_alocacao = db.Column(db.Integer, primary_key=True)
+    id_equipamento = db.Column(db.Integer, db.ForeignKey('equipamento.id_equipamento'), nullable=False)
+    id_setor = db.Column(db.Integer, db.ForeignKey('setor.id_setor'),nullable=False)
+    data_movimentacao = db.Column(db.Date(),  nullable=False)
+    data_retorno = db.Column(db.Date())
+    obs = db.Column(db.String(100)) 
+
+
+class Setor(db.Model):
+    id_setor = db.Column(db.Integer, primary_key=True)
+    nome_setor = db.Column(db.Text)

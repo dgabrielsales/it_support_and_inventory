@@ -1,0 +1,55 @@
+{%extends 'base_inventario.html'%}
+{%block content%} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inserir Ativo</title>
+</head>
+<body>
+    <br>
+    <form action='/enviar_ativo' method="post">
+
+        <div class="container card  bg-dark text-white border-secondary ">
+           <br>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label " >Nome Ativo</label>
+            <input type="text" class="form-control bg-dark text-white" id="nome_ativo" required name="nome_ativo" placeholder="" autocomplete="off">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label " >Data Compra</label>
+            <input type="text" class="form-control bg-dark text-white" id="data_compra" required name="data_compra" placeholder="" autocomplete="off">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label " >Número Série</label>
+            <input type="text" class="form-control bg-dark text-white" id="numero_serie" required name="numero_serie" placeholder="" autocomplete="off">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label " >Marca</label>
+            <input type="text" class="form-control bg-dark text-white" id="marca" required name="marca" placeholder="" autocomplete="off">
+          </div>
+        
+          <button type="submit" class="btn btn-primary">Cadastrar</button>  
+          <form>
+        <br>
+        
+    
+        </div>
+        <br>
+
+
+</body>
+</html>
+{%endblock%}

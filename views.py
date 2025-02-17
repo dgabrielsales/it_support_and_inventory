@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash, session , jsonify
 from app import app, db
 from sqlalchemy.exc import SQLAlchemyError
-from models import Problema, Solucao, Tag
+from models import Problema, Solucao, Tag, Equipamento, Setor, Alocacao
 
 
 
@@ -41,7 +41,7 @@ def problemas():
         return redirect(url_for('inicio_cadastro'))
 
 
-@app.route('/problemas_cadastrados', methods=['GET'])
+@app.route('/base_conhecimento', methods=['GET'])
 def problemas_cadastrados():
     problemas = Problema.query.all()
     ids_problemas = [problema.id for problema in problemas]
@@ -123,3 +123,27 @@ def atualizar_ticket(id):
             flash('Erro ao atualizar', category='danger')
         
     return render_template('registrados/pagina_editar.html', problema=problema, problema_id=id,  tags_existentes=tags_existentes)
+
+@app.route('/invetario', methods=['GET'])
+def inventario():
+   # ativos = .query.all()
+    print()
+    return render_template('./inventario/inventario.html')
+
+##condicional teste
+@app.route('/cadastrar_ativo', methods=['GET'])
+def cadastro_ativo():
+    return render_template('./inventario/inserir_ativo.html')
+
+@app.route('/enviar_ativo', methods=['GET', 'POST'])
+def inserir_ativo():
+    if request.method == 'POST':
+        nome_ativo = request.form['nome_ativo']
+        data_compra = request.form['data_compra']
+        numero_serie = request.form['numero_serie']
+        marca = request.form['marca']
+        dados_ativos = Equipamento(nome_produto=nome_ativo,   data_compra=data_compra, numero_serie=numero_serie, marca=marca)
+        db.session.add(dados_ativos)
+        db.session.commit()
+        flash(f'Ativo Cadastrado com sucesso :)', category='success')
+    return render_template('./inventario/inserir_ativo.html')
